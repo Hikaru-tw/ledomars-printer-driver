@@ -1,0 +1,58 @@
+; Copyright (c) 2010 EC Printer
+;
+;	Printer Installation File
+;	List of supported printers, manufacturers
+;
+[Version]
+ Signature="$CHICAGO$"
+ ver=01.00.00
+ Class=Printer
+ Provider=%LEDOMARS%
+ LayoutFile=layout.inf
+ DriverVer=01/07/2019,1.4.0.1
+
+[Manufacturer]
+ %LEDOMARS%=LEDOMARS
+
+[LEDOMARS]
+ "LEDOMARS LP-7800IV"=LP7800IV.DRV,LPTENUM\LEDOMARS_LP-7800IV27C4,LEDOMARS_LP-7800IV27C4
+ "LEDOMARS LP-7800IV"=LP7800IV.DRV,USBPRINT\LEDOMARS_LP-7800IV27C4,LEDOMARS_LP-7800IV27C4
+
+[LP7800IV.DRV]
+ CopyFiles=@LP7800IV.DRV,UNI,MON
+ DataSection=UNI_DATA
+ DriverFile=LP7800IV.DRV
+ DataFile=LP7800IV.DRV
+ ;PrintProcessor=JMProces,JMProces.dll
+ PortMonitor=LMUSB,LMUsbMon.dll
+
+[UNI]
+ UNIDRV.DLL,,,0x00000020         ; Copy only if new binary
+ UNIDRV.HLP,,,0x00000020         ; Copy only if new binary
+ ICONLIB.DLL,,,0x00000020         ; Copy only if new binary
+ DMCOLOR.DLL,,,0x00000020         ; Copy only if new binary
+
+[UNI_DATA]
+ HelpFile=UNIDRV.HLP
+ DefaultDataType=RAW
+
+;[OEM_PROCES]
+;JMProces.dll
+
+[MON]
+LMUsbMon.dll
+
+[DestinationDirs]
+ DefaultDestDir=11
+; OEM_PROCES=66001
+
+[SourceDisksNames]
+ 1="LEDOMARS LP-7800IV Driver Source Disk",,0
+
+[SourceDisksFiles]
+ LP7800IV.DRV=1
+; JMProces.dll=1
+ LMUsbMon.dll=1
+
+[Strings]
+ LEDOMARS="LEDOMARS"

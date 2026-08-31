@@ -1,0 +1,57 @@
+;       Copyright (c) 2010 Jolimark
+;
+;	Printer Installation File
+;	List of supported printers, manufacturers
+;
+[Version]
+ Signature="$CHICAGO$"
+ ver=01.00.00
+ Class=Printer
+ Provider=%LEDOMARS%
+ LayoutFile=layout.inf
+ DriverVer=01/07/2019, 1.3.0.0
+
+[Manufacturer]
+ %LEDOMARS%=BP-880
+
+[BP-880]
+ "LEDOMARS BP-880"=BP880.DRV,LPTENUM\LEDOMARS_BP-880A986,LEDOMARS_BP-880_24-PIN_PRINTER
+
+[BP880.DRV]
+ CopyFiles=@BP880.DRV,UNI,MON,OEM_PROCES
+ DataSection=UNI_DATA
+ DriverFile=BP880.DRV
+ DataFile=BP880.DRV
+ PortMonitor=JMUSB,JMUsbMon.dll
+;PrintProcessor=JMProces,JMProces.dll
+
+[UNI]
+ UNIDRV.DLL,,,0x00000020         ; Copy only if new binary
+ UNIDRV.HLP,,,0x00000020         ; Copy only if new binary
+ ICONLIB.DLL,,,0x00000020         ; Copy only if new binary
+ DMCOLOR.DLL,,,0x00000020         ; Copy only if new binary
+
+[UNI_DATA]
+ HelpFile=UNIDRV.HLP
+ DefaultDataType=RAW
+
+[MON]
+ JMUsbMon.dll
+
+[OEM_PROCES]
+JMProces.dll
+
+[DestinationDirs]
+ DefaultDestDir=11
+ OEM_PROCES=66001
+
+[SourceDisksNames]
+ 1="LEDOMARS BP880 Driver Source Disk",,0
+
+[SourceDisksFiles]
+ BP880.DRV=1
+ JMUsbMon.dll=1
+;JMProces.dll=1
+
+[Strings]
+ LEDOMARS="LEDOMARS "

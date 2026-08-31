@@ -1,0 +1,52 @@
+
+[Version]
+ Signature="$CHICAGO$"
+ ver=00.00.00
+ Class=Printer
+ Provider=%LEDOMARS%
+ LayoutFile=layout.inf
+
+[Manufacturer]
+ %LEDOMARS%=LP-7000E
+
+[LP-7000E]
+ "LEDOMARS LP-7000E"=LP7000E.DRV,LPTENUM\LEDOMARS_LP-7000EA120,LEDOMARS_LP-7000E_24-PIN_PRINTER
+ "LEDOMARS LP-7000E"=LP7000E.DRV,USBPRINT\LEDOMARS_LP-7000EA120,LEDOMARS_LP-7000E_24-PIN_PRINTER
+ 
+[LP7000E.DRV]
+ CopyFiles=@LP7000E.DRV,UNI,MON
+ DataSection=UNI_DATA
+ DriverFile=LP7000E.DRV
+ DataFile=LP7000E.DRV
+ UpdateInis=WIN_INI
+ PortMonitor=JMUSB,JMUsbMon.dll
+
+[UNI]
+ UNIDRV.DLL
+ UNIDRV.HLP
+ ICONLIB.DLL
+ DMCOLOR.DLL
+
+[UNI_DATA]
+ HelpFile=UNIDRV.HLP
+ DefaultDataType=RAW
+
+[MON]
+ JMUsbMon.dll
+
+[WIN_INI]
+win.ini,LP7000E,,"IsScale=0",0
+win.ini,LP7000E,,"ZoomRate=100",0
+
+[DestinationDirs]
+ DefaultDestDir=11
+
+[SourceDisksNames]
+ 1="LP-7000E Driver Source Disk",,0
+
+[SourceDisksFiles]
+ LP7000E.DRV=1
+JMUsbMon.dll=1
+
+[Strings]
+LEDOMARS="LEDOMARS "

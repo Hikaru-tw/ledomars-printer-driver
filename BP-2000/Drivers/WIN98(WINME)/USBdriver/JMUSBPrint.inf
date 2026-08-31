@@ -1,0 +1,99 @@
+[Version]
+Signature="$Windows 95$"
+Provider=%ProviderName%
+Class=USB
+ClassGUID={36FC9E60-C465-11CF-8056-444553540000}
+DriverVer=1/31/2005,1.0
+
+;--------- SourceDiskNames and SourceDiskFiles Section -----------------------
+
+; These sections identify source disks and files for installation.  They are
+; shown here as an example, but commented out.
+
+[SourceDisksNames]
+1 = "Install Disk",Disk1,,""
+
+[SourceDisksFiles]
+JMUSB.sys = 1,,
+
+;--------- ClassInstall/ClassInstall32 Section -------------------------------
+
+; Not necessary if using a standard class
+
+; 9X Style
+[ClassInstall]
+Addreg=Class_AddReg
+
+; NT Style
+[ClassInstall32]
+Addreg=Class_AddReg
+
+[Class_AddReg]
+HKR,,,,%DeviceClassName%
+HKR,,Icon,,"-18"
+
+;--------- DestinationDirs Section -------------------------------------------
+
+[DestinationDirs]
+JMUSBPrint_Files_Driver = 10,System32\Drivers
+
+;--------- Manufacturer and Models Sections ----------------------------------
+
+[Manufacturer]
+%MfgName%=Mfg0
+
+[Mfg0]
+;%DeviceDesc%=JMUSBPrint_DDI, USB\VID_1BA0&PID_1504,Class_7
+%DeviceDesc%=JMUSBPrint_DDI,USB\Class_07,GENERIC_USB_PRINTER
+
+;---------- DDInstall Sections -----------------------------------------------
+; --------- Windows 9X -----------------
+
+; Experimentation has shown that DDInstall root names greater than 19 characters
+; cause problems in Windows 98
+
+[JMUSBPrint_DDI]
+CopyFiles=JMUSBPrint_Files_Driver
+AddReg=JMUSBPrint_9X_AddReg
+
+[JMUSBPrint_9X_AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,JMUSB.sys
+HKR, "Parameters", "BreakOnEntry", 0x00010001, 0
+
+; --------- Windows NT -----------------
+
+[JMUSBPrint_DDI.NT]
+CopyFiles=JMUSBPrint_Files_Driver
+AddReg=JMUSBPrint_NT_AddReg
+
+[JMUSBPrint_DDI.NT.Services]
+Addservice = JMUSBPrint, 0x00000002, JMUSBPrint_AddService
+
+[JMUSBPrint_AddService]
+DisplayName    = %SvcDesc%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %10%\System32\Drivers\JMUSB.sys
+
+[JMUSBPrint_NT_AddReg]
+HKLM, "System\CurrentControlSet\Services\JMUSBPrint\Parameters",\
+	"BreakOnEntry", 0x00010001, 0
+
+
+; --------- Files (common) -------------
+
+[JMUSBPrint_Files_Driver]
+JMUSB.sys
+
+;--------- Strings Section ---------------------------------------------------
+
+[Strings]
+ProviderName="LEDOMARS"
+MfgName="LEDOMARS"
+DeviceDesc="USB Print Supported "
+DeviceClassName="USB Print Class "
+SvcDesc="USB Print Service "
+
+

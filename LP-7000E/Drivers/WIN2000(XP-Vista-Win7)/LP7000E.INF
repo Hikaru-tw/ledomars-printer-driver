@@ -1,0 +1,113 @@
+; INF File for Windows 2000/Windows XP
+;	Printer Installation File
+; Copyright (c) 2010 LEDOMARS Corporation
+;	List of supported printers, manufacturers
+; (PNPID:LEDOMARS)
+
+[Version]
+Signature="$Windows NT$"
+Provider=%ProviderName%
+ClassGUID={4D36E979-E325-11CE-BFC1-08002BE10318}
+CatalogFile=LP7000E.CAT
+Class=Printer
+DriverVer=01/08/2019, 1.2.0.0
+
+; ------------------------------
+[Manufacturer]
+%Providername%= LEDOMARS, NTx86.6.0, NTamd64.5.1, NTIA64.5.1
+
+; ------------------------------
+[LEDOMARS]
+"LEDOMARS LP-7000E" = LP7000E.files,LPTENUM\LEDOMARS_LP-7000EA120,LEDOMARS_LP-7000E
+"LEDOMARS LP-7000E" = LP7000E.files,SERENUM\LEDOMARS_LP-7000EA120,LEDOMARS_LP-7000E
+"LEDOMARS LP-7000E" = LP7000E.files,USBPRINT\LEDOMARS_LP-7000EA120,LEDOMARS_LP-7000E
+
+[LEDOMARS.NTx86.6.0]
+"LEDOMARS LP-7000E" = LP7000E.files,LPTENUM\LEDOMARS_LP-7000EA120,LEDOMARS_LP-7000E
+"LEDOMARS LP-7000E" = LP7000E.files,SERENUM\LEDOMARS_LP-7000EA120,LEDOMARS_LP-7000E
+"LEDOMARS LP-7000E" = LP7000E.files,USBPRINT\LEDOMARS_LP-7000EA120,LEDOMARS_LP-7000E
+
+[LEDOMARS.NTamd64.5.1]
+"LEDOMARS LP-7000E" = LP7000E.files64,LPTENUM\LEDOMARS_LP-7000EA120,LEDOMARS_LP-7000E
+"LEDOMARS LP-7000E" = LP7000E.files,SERENUM\LEDOMARS_LP-7000EA120,LEDOMARS_LP-7000E
+"LEDOMARS LP-7000E" = LP7000E.files64,USBPRINT\LEDOMARS_LP-7000EA120,LEDOMARS_LP-7000E
+
+[LEDOMARS.NTIA64.5.1]
+"LEDOMARS LP-7000E" = LP7000E.files64,LPTENUM\LEDOMARS_LP-7000EA120,LEDOMARS_LP-7000E
+"LEDOMARS LP-7000E" = LP7000E.files,SERENUM\LEDOMARS_LP-7000EA120,LEDOMARS_LP-7000E
+"LEDOMARS LP-7000E" = LP7000E.files64,USBPRINT\LEDOMARS_LP-7000EA120,LEDOMARS_LP-7000E
+
+; ++++++++++++++++++++++++++++++
+[LP7000E.files]
+CopyFiles = @LP7000E.Dll,@LP7000E.GPD,OEM_SETUP
+DataSection = OEM_BIDI_DATA
+DataFile = LP7000E.GPD
+Include = NTPRINT.INF
+Needs = UNIDRV.OEM
+AddReg=UninstInfo.AddReg
+
+[LP7000E.files64]
+CopyFiles = @LP7000E.Dll,@LP7000E.GPD,OEM_SETUP
+DataSection = OEM_BIDI_DATA
+DataFile = LP7000E.GPD
+Include = NTPRINT.INF
+Needs = UNIDRV.OEM
+AddReg=UninstInfo.AddReg64
+
+
+[UninstInfo.AddReg]
+HKLM,"%UNINSTKEY%","caption",0x00000000,"%UNINSTCAPTION%"
+HKLM,"%UNINSTKEY%","DisplayName",0x00000000,"%UNINSTDISPLAY%"
+HKLM,"%UNINSTKEY%","UninstallString",0x00000000,"%52%\3\LMPrnUni.exe"
+HKLM,"%UNINSTKEY%\PrinterDrivers\%DRVNAME%","Leave OEM INF",0x00010001,0x00000001
+
+[UninstInfo.AddReg64]
+HKLM,"%UNINSTKEY64%","caption",0x00000000,"%UNINSTCAPTION%"
+HKLM,"%UNINSTKEY64%","DisplayName",0x00000000,"%UNINSTDISPLAY%"
+HKLM,"%UNINSTKEY64%","UninstallString",0x00000000,"%52%\3\LMPrnUni.exe"
+HKLM,"%UNINSTKEY64%\PrinterDrivers\%DRVNAME%","Leave OEM INF",0x00010001,0x00000001
+
+[OEM_BIDI_DATA]
+DriverFile = UNIDRV.DLL
+ConfigFile = UNIDRVUI.DLL
+HelpFile = UNIDRV.HLP
+
+[OEM_SETUP]
+LMPrnUni.exe,,,0x20
+
+[DestinationDirs]
+DefaultDestDir = 66000
+
+[SourceDisksNames]
+81 = %disk1%,,,\i386
+32 = %disk1%,,,\i386
+
+[SourceDisksNames.X86]
+1 = %disk1%,,,\i386
+
+[SourceDisksNames.amd64]
+1 = %disk1%,,,\X64
+
+[SourceDisksNames.IA64]
+1 = %disk1%,,,\IA64
+
+
+;++++++++++++++++++++++++++++
+[SourceDisksFiles]
+LP7000E.Dll = 1
+LP7000E.GPD = 81
+LMPrnUni.exe = 81
+
+[OEM URLs]
+%ProviderName% = %LEDOMARSURL%
+
+[Strings]
+PrinterClassName = "Printers"
+ProviderName = "LEDOMARS"
+LEDOMARSURL = "http://www.LEDOMARS.com"
+disk1 = "LEDOMARS Printer Driver Setup Disk"
+DRVNAME = "LEDOMARS LP-7000E"
+UNINSTKEY = "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\LEDOMARS Printer Utilities"
+UNINSTKEY64 = "SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\LEDOMARS Printer Utilities"
+UNINSTCAPTION = "LEDOMARS Printer Drivers UnInstaller"
+UNINSTDISPLAY = "Remove LEDOMARS Printer Drivers"

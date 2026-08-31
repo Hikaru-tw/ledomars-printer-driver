@@ -1,0 +1,121 @@
+;       Copyright (c) 2010 LEDOMARS
+;
+;	Printer Installation File
+;	List of supported printers, manufacturers
+;	LEDOMARS_LP-300051C7
+
+[Version]
+Signature="$Windows NT$"
+Provider=%Providername%
+ClassGUID={4D36E979-E325-11CE-BFC1-08002BE10318}
+CatalogFile=LP3000.CAT
+Class=Printer
+DriverVer=09/16/2020, 1.0.0.1
+
+
+[Manufacturer]
+%Providername%= LEDOMARS, NTx86.6.0, NTamd64.5.1, NTIA64.5.1
+
+[LEDOMARS]
+"LEDOMARS LP-3000" = LP3000.files,LPTENUM\LEDOMARS_LP-300051C7,LEDOMARS_LP-3000
+"LEDOMARS LP-3000" = LP3000.files,SERENUM\LEDOMARS_LP-300051C7,LEDOMARS_LP-3000
+"LEDOMARS LP-3000" = LP3000.files,USBPRINT\LEDOMARS_LP-300051C7,LEDOMARS_LP-3000
+
+[LEDOMARS.NTx86.6.0]
+"LEDOMARS LP-3000" = LP3000.files,LPTENUM\LEDOMARS_LP-300051C7,LEDOMARS_LP-3000
+"LEDOMARS LP-3000" = LP3000.files,SERENUM\LEDOMARS_LP-300051C7,LEDOMARS_LP-3000
+"LEDOMARS LP-3000" = LP3000.files,USBPRINT\LEDOMARS_LP-300051C7,LEDOMARS_LP-3000
+
+[LEDOMARS.NTamd64.5.1]
+"LEDOMARS LP-3000" = LP3000.files64,LPTENUM\LEDOMARS_LP-300051C7,LEDOMARS_LP-3000
+"LEDOMARS LP-3000" = LP3000.files64,USBPRINT\LEDOMARS_LP-300051C7,LEDOMARS_LP-3000
+"LEDOMARS LP-3000" = LP3000.files64,SERENUM\LEDOMARS_LP-300051C7,LEDOMARS_LP-3000
+
+[LEDOMARS.NTIA64.5.1]
+"LEDOMARS LP-3000" = LP3000.files64,LPTENUM\LEDOMARS_LP-300051C7,LEDOMARS_LP-3000
+"LEDOMARS LP-3000" = LP3000.files64,USBPRINT\LEDOMARS_LP-300051C7,LEDOMARS_LP-3000
+"LEDOMARS LP-3000" = LP3000.files64,SERENUM\LEDOMARS_LP-300051C7,LEDOMARS_LP-3000
+
+;
+; Installer section(s) referenced above.
+;
+[UNIDRV_DATA1]
+DriverFile=UNIDRV.DLL
+ConfigFile=UNIDRVUI.DLL
+HelpFile=UNIDRV.HLP
+
+[LP3000.files]
+CopyFiles=@LP3000.Dll,@LP3000.GPD,OEM_CONFIG,@LP-3000_Settings.Dat
+DataSection=UNIDRV_DATA1
+DataFile=LP3000.GPD
+Include=NTPRINT.INF
+Needs=UNIDRV.OEM
+;AddReg=UninstInfo.AddReg
+
+[LP3000.files64]
+CopyFiles=@LP3000.Dll,@LP3000.GPD,OEM_CONFIG,@LP-3000_Settings.Dat
+DataSection=UNIDRV_DATA1
+DataFile=LP3000.GPD
+Include=NTPRINT.INF
+Needs=UNIDRV.OEM
+;AddReg=UninstInfo.AddReg64
+
+[UninstInfo.AddReg]
+HKLM,"%UNINSTKEY%","caption",0x00000000,"%UNINSTCAPTION%"
+HKLM,"%UNINSTKEY%","DisplayName",0x00000000,"%UNINSTDISPLAY%"
+HKLM,"%UNINSTKEY%","UninstallString",0x00000000,"%52%\3\JmPrnUni.exe"
+HKLM,"%UNINSTKEY%\PrinterDrivers\%DRVNAME%","Leave OEM INF",0x00010001,0x00000001
+
+[UninstInfo.AddReg64]
+HKLM,"%UNINSTKEY64%","caption",0x00000000,"%UNINSTCAPTION%"
+HKLM,"%UNINSTKEY64%","DisplayName",0x00000000,"%UNINSTDISPLAY%"
+HKLM,"%UNINSTKEY64%","UninstallString",0x00000000,"%52%\3\JmPrnUni.exe"
+HKLM,"%UNINSTKEY64%\PrinterDrivers\%DRVNAME%","Leave OEM INF",0x00010001,0x00000001
+
+
+[OEM_CONFIG]
+jSettings2.ini,,,0x20
+jSettingsui.dll,,,0x20
+jmGraphicsuni.dll,,,0x20
+JMSettingManager2,,,0x20
+JMP_RW.dll,,,0x20
+
+[DestinationDirs]
+DefaultDestDir=66000
+
+[SourceDisksNames]
+81 = %disk1%,,,\i386
+
+[SourceDisksNames.x86]
+1 = %disk1%,,,\i386
+
+[SourceDisksNames.amd64]
+1 = %disk1%,,,\X64
+
+[SourceDisksNames.IA64]
+1 = %disk1%,,,\IA64
+
+[SourceDisksFiles]
+LP3000.Dll = 1
+LP3000.GPD = 81
+;JmPrnUni.exe = 81
+LP-3000_Settings.Dat = 81
+jSettings2.ini = 1
+jSettingsui.dll = 1
+jmGraphicsuni.dll = 1
+JMSettingManager2 = 81
+JMP_RW.dll = 81
+
+[OEM URLs]
+%ProviderName% = %LEDOMARSURL%
+
+[Strings]
+PrinterClassName = "Printers"
+ProviderName = "LEDOMARS"
+LEDOMARSURL = "http://www.LEDOMARS.com.cn"
+disk1 = "LEDOMARS Printer Driver Setup Disk"
+DRVNAME = "LEDOMARS LP-3000"
+UNINSTKEY = "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\LEDOMARS Printer Utilities"
+UNINSTKEY64 = "SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\LEDOMARS Printer Utilities"
+UNINSTCAPTION = "LEDOMARS Printer Drivers UnInstaller"
+UNINSTDISPLAY = "Remove LEDOMARS Printer Drivers"

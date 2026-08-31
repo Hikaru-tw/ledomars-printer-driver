@@ -1,0 +1,51 @@
+
+[Version]
+Signature="$CHICAGO$"
+;ver=00.00.00
+Class=Printer
+Provider=%LEDOMARS%
+LayoutFile=layout.inf
+
+[Manufacturer]
+%LEDOMARS%= LP7580
+
+
+[LP7580]
+ "LEDOMARS LP-7580"=LP7580.DRV,LPTENUM\LEDOMARS_LP-7580A0D3,LEDOMARS_LP-7580
+ "LEDOMARS LP-7580"=LP7580.DRV,USBPRINT\LEDOMARS_LP-7580A0D3,LEDOMARS_LP-7580
+
+[LP7580.DRV]
+ CopyFiles=@LP7580.DRV,UNI,MON
+ DataSection=UNI_DATA
+ DriverFile=LP7580.DRV
+ DataFile=LP7580.DRV
+ PortMonitor=LMUSB,LMUsbMon.dll
+ 
+
+[UNI]
+ UNIDRV.DLL,,,0x00000020         ; Copy only if new binary
+ UNIDRV.HLP,,,0x00000020         ; Copy only if new binary
+ ICONLIB.DLL,,,0x00000020         ; Copy only if new binary
+ DMCOLOR.DLL,,,0x00000020         ; Copy only if new binary
+
+[UNI_DATA]
+ HelpFile=UNIDRV.HLP
+ DefaultDataType=EMF
+
+[MON]
+LMUsbMon.dll
+
+[DestinationDirs]
+ DefaultDestDir=11
+
+[SourceDisksNames]
+1="LP-7580 Driver Source Disk",,0
+
+[SourceDisksFiles]
+ LP7580.DRV=1
+ LMUsbMon.dll=1
+
+[Strings]
+ LEDOMARS="LEDOMARS"
+
+ 

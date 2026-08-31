@@ -1,0 +1,52 @@
+
+[Version]
+ Signature="$CHICAGO$"
+ ver=00.00.00
+ Class=Printer
+ Provider=%LEDOMARS%
+ LayoutFile=layout.inf
+
+[Manufacturer]
+ %LEDOMARS%=BP-2000
+
+[BP-2000]
+ "LEDOMARS BP-2000"=BP2000.DRV,LPTENUM\LEDOMARS_BP-20006D2B,LEDOMARS_BP-2000_24-PIN_PRINTER
+ "LEDOMARS BP-2000"=BP2000.DRV,USBPRINT\LEDOMARS_BP-20006D2B,LEDOMARS_BP-2000_24-PIN_PRINTER
+ 
+[BP2000.DRV]
+ CopyFiles=@BP2000.DRV,UNI,MON
+ DataSection=UNI_DATA
+ DriverFile=BP2000.DRV
+ DataFile=BP2000.DRV
+ UpdateInis=WIN_INI
+ PortMonitor=JMUSB,JMUsbMon.dll
+
+[UNI]
+ UNIDRV.DLL
+ UNIDRV.HLP
+ ICONLIB.DLL
+ DMCOLOR.DLL
+
+[UNI_DATA]
+ HelpFile=UNIDRV.HLP
+ DefaultDataType=RAW
+
+[MON]
+ JMUsbMon.dll
+
+[WIN_INI]
+win.ini,BP2000,,"IsScale=0",0
+win.ini,BP2000,,"ZoomRate=100",0
+
+[DestinationDirs]
+ DefaultDestDir=11
+
+[SourceDisksNames]
+ 1="BP-2000 Driver Source Disk",,0
+
+[SourceDisksFiles]
+ BP2000.DRV=1
+JMUsbMon.dll=1
+
+[Strings]
+LEDOMARS="LEDOMARS "
